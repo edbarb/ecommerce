@@ -12,12 +12,12 @@ class Page {
 		"data"=>[]
 	]; 
 
-	public function __construct($opts = array()) //primeiro a ser executado
+	public function __construct($opts = array(), $tpl_dir = "/views/") //primeiro a ser executado
 	{
 		$this->options = array_merge($this->defaults, $opts);
 
 		$config = array(
-			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/", //vai trazer a pasta do DIR root
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"].$tpl_dir, //vai trazer a pasta do DIR root
 			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
 			"debug"         => false
 		);
