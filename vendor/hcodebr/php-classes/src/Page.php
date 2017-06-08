@@ -9,11 +9,15 @@ class Page {
 	private $tpl;
 	private $options = [];
 	private $defaults = [
+		"header"=>true,
+		"footer"=>true,
 		"data"=>[]
 	]; 
 
 	public function __construct($opts = array(), $tpl_dir = "/views/") //primeiro a ser executado
 	{
+		//$this->defaults["data"]["session"] = $_SESSION;
+
 		$this->options = array_merge($this->defaults, $opts);
 
 		$config = array(
@@ -28,7 +32,7 @@ class Page {
 
 		$this->setData($this->options["data"]);
 
-		$this->tpl->draw("header");
+		if($this->options["header"] === true) $this->tpl->draw("header");
 
 	}
 
@@ -52,7 +56,7 @@ class Page {
 	//Criando o destruct
 	public function __destruct() //Ultimo a ser executado
 	{//Rodape
-		$this->tpl->draw("footer");
+		if($this->options["footer"] === true) $this->tpl->draw("footer");
 	}
 }
 
